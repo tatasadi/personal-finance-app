@@ -50,7 +50,7 @@ export function Sidebar() {
       {/* Desktop Sidebar */}
       <aside
         className={cn(
-          "hidden lg:flex bg-[#201f24] rounded-tr-2xl rounded-br-2xl flex-col transition-all duration-300",
+          "hidden lg:flex bg-grey-900 rounded-tr-2xl rounded-br-2xl flex-col transition-all duration-300",
           isMinimized ? "w-[88px]" : "w-[300px]"
         )}
       >
@@ -61,7 +61,7 @@ export function Sidebar() {
           )}
           {isMinimized && (
             <div className="w-8 h-8 bg-white rounded flex items-center justify-center">
-              <span className="text-[#201f24] font-bold text-sm">f</span>
+              <span className="text-grey-900 font-bold text-sm">f</span>
             </div>
           )}
         </div>
@@ -79,8 +79,8 @@ export function Sidebar() {
                 className={cn(
                   "flex items-center gap-4 h-14 px-8 rounded-tr-xl rounded-br-xl font-bold text-base transition-all",
                   isActive
-                    ? "bg-[#F8F4F0] text-[#201f24] border-l-4 border-[#277C78]"
-                    : "text-[#B3B3B3] hover:text-white"
+                    ? "bg-beige-100 text-grey-900 border-l-4 border-budget-green"
+                    : "text-grey-300 hover:text-white"
                 )}
               >
                 <Icon className="w-6 h-6 shrink-0" />
@@ -93,7 +93,7 @@ export function Sidebar() {
         {/* Minimize Button */}
         <button
           onClick={() => setIsMinimized(!isMinimized)}
-          className="flex items-center gap-4 h-14 px-8 text-[#B3B3B3] hover:text-white font-bold text-base transition-colors mb-6"
+          className="flex items-center gap-4 h-14 px-8 text-grey-300 hover:text-white font-bold text-base transition-colors mb-6"
         >
           <ChevronsLeft
             className={cn(
@@ -106,7 +106,7 @@ export function Sidebar() {
       </aside>
 
       {/* Mobile Bottom Navigation - Icons Only */}
-      <nav className="lg:hidden fixed bottom-0 left-0 right-0 bg-[#201f24] rounded-tl-lg rounded-tr-lg flex items-center justify-around px-2 py-2 z-50 md:hidden">
+      <nav className="lg:hidden fixed bottom-0 left-0 right-0 bg-grey-900 rounded-tl-lg rounded-tr-lg flex items-center justify-around px-2 py-2 z-50 md:hidden">
         {navItems.map((item) => {
           const isActive = pathname === item.href
           const Icon = item.icon
@@ -118,8 +118,8 @@ export function Sidebar() {
               className={cn(
                 "flex flex-col items-center justify-center gap-1 px-4 py-2 rounded-xl transition-all min-w-[56px]",
                 isActive
-                  ? "bg-[#F8F4F0] text-[#277C78]"
-                  : "text-[#B3B3B3]"
+                  ? "bg-beige-100 text-budget-green"
+                  : "text-grey-300"
               )}
             >
               <Icon className="w-6 h-6" />
@@ -129,7 +129,7 @@ export function Sidebar() {
       </nav>
 
       {/* Tablet Bottom Navigation - Icons + Labels */}
-      <nav className="hidden md:flex lg:hidden fixed bottom-0 left-0 right-0 bg-[#201f24] rounded-tl-lg rounded-tr-lg items-center justify-around px-4 py-3 z-50">
+      <nav className="hidden md:flex lg:hidden fixed bottom-0 left-0 right-0 bg-grey-900 rounded-tl-lg rounded-tr-lg items-center justify-around px-4 py-3 z-50">
         {navItems.map((item) => {
           const isActive = pathname === item.href
           const Icon = item.icon
@@ -141,8 +141,8 @@ export function Sidebar() {
               className={cn(
                 "flex flex-col items-center justify-center gap-1 px-6 py-2 rounded-xl transition-all",
                 isActive
-                  ? "bg-[#F8F4F0] text-[#277C78]"
-                  : "text-[#B3B3B3]"
+                  ? "bg-beige-100 text-budget-green"
+                  : "text-grey-300"
               )}
             >
               <Icon className="w-6 h-6" />

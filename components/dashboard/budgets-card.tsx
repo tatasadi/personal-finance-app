@@ -40,10 +40,10 @@ export function BudgetsCard({ budgets, limit }: BudgetsCardProps) {
   return (
     <Card className="p-8">
       <div className="flex items-center justify-between mb-8">
-        <h2 className="text-xl font-bold text-[#201f24]">Budgets</h2>
+        <h2 className="text-xl font-bold text-grey-900">Budgets</h2>
         <Link
           href="/budgets"
-          className="text-sm text-[#696868] hover:text-[#201f24] flex items-center gap-3"
+          className="text-sm text-grey-500 hover:text-grey-900 flex items-center gap-3"
         >
           See Details
           <svg width="6" height="11" viewBox="0 0 6 11" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -85,10 +85,10 @@ export function BudgetsCard({ budgets, limit }: BudgetsCardProps) {
 
           {/* Center text */}
           <div className="absolute inset-0 flex flex-col items-center justify-center">
-            <p className="text-[32px] font-bold text-[#201f24] leading-none">
+            <p className="text-[32px] font-bold text-grey-900 leading-none">
               ${totalSpent}
             </p>
-            <p className="text-xs text-[#696868] mt-2">of ${limit} limit</p>
+            <p className="text-xs text-grey-500 mt-2">of ${limit} limit</p>
           </div>
         </div>
 
@@ -101,8 +101,8 @@ export function BudgetsCard({ budgets, limit }: BudgetsCardProps) {
                 style={{ backgroundColor: budget.color }}
               />
               <div className="flex-1">
-                <p className="text-xs text-[#696868] mb-1">{budget.category}</p>
-                <p className="text-sm font-bold text-[#201f24]">${budget.amount.toFixed(2)}</p>
+                <p className="text-xs text-grey-500 mb-1">{budget.category}</p>
+                <p className="text-sm font-bold text-grey-900">${budget.amount.toFixed(2)}</p>
               </div>
             </div>
           ))}

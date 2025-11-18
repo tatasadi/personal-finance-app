@@ -102,7 +102,7 @@ export function BudgetDialog({
                 <XIcon className="h-4 w-4" />
               </button>
             </div>
-            <p className="text-sm text-[#696868]">
+            <p className="text-sm text-grey-500">
               {isEditing
                 ? "As your budgets change, feel free to update your spending limits."
                 : "Choose a category to set a spending budget. These categories can help you monitor spending."}
@@ -111,13 +111,13 @@ export function BudgetDialog({
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="space-y-1">
-              <Label htmlFor="category" className="text-xs font-bold text-[#696868]">
+              <Label htmlFor="category" className="text-xs font-bold text-grey-500">
                 Budget Category
               </Label>
               <Select value={category} onValueChange={setCategory}>
                 <SelectTrigger
                   id="category"
-                  className="h-11 w-full rounded-lg border-[#98908B] text-sm"
+                  className="h-11 w-full rounded-lg border-beige-500 text-sm"
                 >
                   <SelectValue placeholder="Select a category" />
                 </SelectTrigger>
@@ -132,11 +132,11 @@ export function BudgetDialog({
             </div>
 
             <div className="space-y-1">
-              <Label htmlFor="maximum" className="text-xs font-bold text-[#696868]">
+              <Label htmlFor="maximum" className="text-xs font-bold text-grey-500">
                 Maximum Spend
               </Label>
               <div className="relative">
-                <span className="absolute left-5 top-1/2 -translate-y-1/2 text-sm text-[#696868]">
+                <span className="absolute left-5 top-1/2 -translate-y-1/2 text-sm text-grey-500">
                   $
                 </span>
                 <Input
@@ -146,19 +146,19 @@ export function BudgetDialog({
                   placeholder="e.g. 2000"
                   value={maximum}
                   onChange={(e) => setMaximum(e.target.value)}
-                  className="h-11 rounded-lg border-[#98908B] pl-8 text-sm"
+                  className="h-11 rounded-lg border-beige-500 pl-8 text-sm"
                 />
               </div>
             </div>
 
             <div className="space-y-1">
-              <Label htmlFor="theme" className="text-xs font-bold text-[#696868]">
+              <Label htmlFor="theme" className="text-xs font-bold text-grey-500">
                 Theme
               </Label>
               <Select value={theme} onValueChange={(value) => setTheme(value as BudgetTheme)}>
                 <SelectTrigger
                   id="theme"
-                  className="h-11 w-full rounded-lg border-[#98908B] text-sm"
+                  className="h-11 w-full rounded-lg border-beige-500 text-sm"
                 >
                   <SelectValue>
                     <div className="flex items-center gap-3">
@@ -188,7 +188,7 @@ export function BudgetDialog({
 
             <Button
               type="submit"
-              className="h-[53px] w-full rounded-lg bg-[#201f24] text-sm font-bold text-white hover:bg-[#201f24]/90"
+              className="h-[53px] w-full rounded-lg bg-grey-900 text-sm font-bold text-white hover:bg-grey-900/90"
             >
               {isEditing ? "Save Changes" : "Add Budget"}
             </Button>

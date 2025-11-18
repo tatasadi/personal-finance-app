@@ -44,7 +44,7 @@ export function DeleteBudgetDialog({
                 <XIcon className="h-4 w-4" />
               </button>
             </div>
-            <p className="text-sm text-[#696868]">
+            <p className="text-sm text-grey-500">
               Are you sure you want to delete this budget? This action cannot be
               reversed, and all the data inside it will be removed forever.
             </p>
@@ -53,13 +53,13 @@ export function DeleteBudgetDialog({
           <div className="space-y-4">
             <Button
               onClick={handleConfirm}
-              className="h-[53px] w-full rounded-lg bg-[#C94736] text-sm font-bold text-white hover:bg-[#C94736]/90"
+              className="h-[53px] w-full rounded-lg bg-budget-red text-sm font-bold text-white hover:bg-budget-red/90"
             >
               Yes, Confirm Deletion
             </Button>
             <button
               onClick={() => onOpenChange(false)}
-              className="w-full text-center text-sm text-[#696868] hover:text-[#201f24]"
+              className="w-full text-center text-sm text-grey-500 hover:text-grey-900"
             >
               No, Go Back
             </button>

@@ -42,13 +42,13 @@ export function BudgetCard({
               className="h-5 w-1 rounded-full"
               style={{ backgroundColor: themeColor }}
             />
-            <h3 className="text-xl font-bold text-[#201f24]">
+            <h3 className="text-xl font-bold text-grey-900">
               {budget.category}
             </h3>
           </div>
           <DropdownMenu>
             <DropdownMenuTrigger className="flex h-8 w-8 items-center justify-center rounded-sm hover:bg-gray-100">
-              <MoreVerticalIcon className="h-4 w-4 text-[#696868]" />
+              <MoreVerticalIcon className="h-4 w-4 text-grey-500" />
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
               <DropdownMenuItem onClick={() => onEdit(budget)}>
@@ -65,13 +65,13 @@ export function BudgetCard({
         </div>
 
         {/* Maximum amount */}
-        <p className="text-sm text-[#696868]">
+        <p className="text-sm text-grey-500">
           Maximum of ${budget.maximum.toFixed(2)}
         </p>
 
         {/* Progress bar */}
         <div className="space-y-4">
-          <div className="h-8 w-full overflow-hidden rounded-lg bg-[#F8F4F0]">
+          <div className="h-8 w-full overflow-hidden rounded-lg bg-beige-100">
             <div
               className="h-full rounded-lg transition-all"
               style={{
@@ -89,17 +89,17 @@ export function BudgetCard({
                 style={{ backgroundColor: themeColor }}
               />
               <div>
-                <p className="text-xs text-[#696868]">Spent</p>
-                <p className="text-sm font-bold text-[#201f24]">
+                <p className="text-xs text-grey-500">Spent</p>
+                <p className="text-sm font-bold text-grey-900">
                   ${budget.spent.toFixed(2)}
                 </p>
               </div>
             </div>
             <div className="flex items-center gap-4">
-              <div className="h-11 w-1 rounded-full bg-[#F8F4F0]" />
+              <div className="h-11 w-1 rounded-full bg-beige-100" />
               <div>
-                <p className="text-xs text-[#696868]">Remaining</p>
-                <p className="text-sm font-bold text-[#201f24]">
+                <p className="text-xs text-grey-500">Remaining</p>
+                <p className="text-sm font-bold text-grey-900">
                   ${remaining.toFixed(2)}
                 </p>
               </div>
@@ -109,14 +109,14 @@ export function BudgetCard({
 
         {/* Latest Spending */}
         {latestTransactions.length > 0 && (
-          <div className="space-y-5 rounded-xl bg-[#F8F4F0] p-5">
+          <div className="space-y-5 rounded-xl bg-beige-100 p-5">
             <div className="flex items-center justify-between">
-              <h4 className="text-sm font-bold text-[#201f24]">
+              <h4 className="text-sm font-bold text-grey-900">
                 Latest Spending
               </h4>
               <Link
                 href={`/transactions?category=${budget.category}`}
-                className="flex items-center gap-3 text-sm text-[#696868] hover:text-[#201f24]"
+                className="flex items-center gap-3 text-sm text-grey-500 hover:text-grey-900"
               >
                 See All
                 <svg
@@ -140,7 +140,7 @@ export function BudgetCard({
               {latestTransactions.map((transaction) => (
                 <div
                   key={transaction.id}
-                  className="flex items-center justify-between border-b border-[#696868]/15 pb-3 last:border-0 last:pb-0"
+                  className="flex items-center justify-between border-b border-grey-500/15 pb-3 last:border-0 last:pb-0"
                 >
                   <div className="flex items-center gap-4">
                     <Avatar className="h-8 w-8">
@@ -152,15 +152,15 @@ export function BudgetCard({
                           .join("")}
                       </AvatarFallback>
                     </Avatar>
-                    <span className="text-xs font-bold text-[#201f24]">
+                    <span className="text-xs font-bold text-grey-900">
                       {transaction.name}
                     </span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <span className="text-xs font-bold text-[#201f24]">
+                    <span className="text-xs font-bold text-grey-900">
                       -${Math.abs(transaction.amount).toFixed(2)}
                     </span>
-                    <span className="text-xs text-[#696868]">
+                    <span className="text-xs text-grey-500">
                       {new Date(transaction.date).toLocaleDateString("en-US", {
                         day: "numeric",
                         month: "short",

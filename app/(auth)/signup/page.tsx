@@ -25,7 +25,7 @@ export default function SignupPage() {
       <CardContent className="p-0">
         <form onSubmit={handleSubmit} className="flex flex-col gap-8">
           {/* Title */}
-          <h1 className="text-[32px] font-bold leading-[1.2] text-[#201f24]">
+          <h1 className="text-[32px] font-bold leading-[1.2] text-grey-900">
             Sign Up
           </h1>
 
@@ -35,7 +35,7 @@ export default function SignupPage() {
             <div className="flex flex-col gap-1">
               <Label
                 htmlFor="name"
-                className="text-xs font-bold text-[#696868] leading-[1.5]"
+                className="text-xs font-bold text-grey-500 leading-[1.5]"
               >
                 Name
               </Label>
@@ -44,7 +44,7 @@ export default function SignupPage() {
                 type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className="h-[44px] px-5 py-3 border-[#98908b] rounded-lg bg-white text-sm"
+                className="h-[44px] px-5 py-3 border-beige-500 rounded-lg bg-white text-sm"
                 required
               />
             </div>
@@ -53,7 +53,7 @@ export default function SignupPage() {
             <div className="flex flex-col gap-1">
               <Label
                 htmlFor="email"
-                className="text-xs font-bold text-[#696868] leading-[1.5]"
+                className="text-xs font-bold text-grey-500 leading-[1.5]"
               >
                 Email
               </Label>
@@ -62,7 +62,7 @@ export default function SignupPage() {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="h-[44px] px-5 py-3 border-[#98908b] rounded-lg bg-white text-sm"
+                className="h-[44px] px-5 py-3 border-beige-500 rounded-lg bg-white text-sm"
                 required
               />
             </div>
@@ -71,7 +71,7 @@ export default function SignupPage() {
             <div className="flex flex-col gap-1">
               <Label
                 htmlFor="password"
-                className="text-xs font-bold text-[#696868] leading-[1.5]"
+                className="text-xs font-bold text-grey-500 leading-[1.5]"
               >
                 Create Password
               </Label>
@@ -81,14 +81,14 @@ export default function SignupPage() {
                   type={showPassword ? "text" : "password"}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="h-[44px] px-5 py-3 pr-12 border-[#98908b] rounded-lg bg-white text-sm"
+                  className="h-[44px] px-5 py-3 pr-12 border-beige-500 rounded-lg bg-white text-sm"
                   required
                   minLength={8}
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-5 top-1/2 -translate-y-1/2 text-[#696868] hover:text-[#201f24] transition-colors"
+                  className="absolute right-5 top-1/2 -translate-y-1/2 text-grey-500 hover:text-grey-900 transition-colors"
                   aria-label={showPassword ? "Hide password" : "Show password"}
                 >
                   {showPassword ? (
@@ -98,7 +98,7 @@ export default function SignupPage() {
                   )}
                 </button>
               </div>
-              <p className="text-xs text-[#696868] leading-[1.5] text-right">
+              <p className="text-xs text-grey-500 leading-[1.5] text-right">
                 Passwords must be at least 8 characters
               </p>
             </div>
@@ -107,7 +107,7 @@ export default function SignupPage() {
           {/* Create Account Button */}
           <Button
             type="submit"
-            className="w-full h-[53px] bg-[#201f24] hover:bg-[#201f24]/90 text-white text-sm font-bold rounded-lg"
+            className="w-full h-[53px] bg-grey-900 hover:bg-grey-900/90 text-white text-sm font-bold rounded-lg"
           >
             Create Account
           </Button>
@@ -115,12 +115,12 @@ export default function SignupPage() {
           {/* Login Link */}
           <div className="flex flex-col items-center gap-2">
             <div className="flex items-center gap-2">
-              <p className="text-sm text-[#696868] leading-[1.5]">
+              <p className="text-sm text-grey-500 leading-[1.5]">
                 Already have an account?
               </p>
               <Link
                 href="/login"
-                className="text-sm font-bold text-[#201f24] underline decoration-solid underline-offset-2 hover:text-[#201f24]/80 leading-[1.5]"
+                className="text-sm font-bold text-grey-900 underline decoration-solid underline-offset-2 hover:text-grey-900/80 leading-[1.5]"
               >
                 Login
               </Link>

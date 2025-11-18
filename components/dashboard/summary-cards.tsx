@@ -12,10 +12,13 @@ export function SummaryCard({ title, amount, variant = "default" }: SummaryCardP
     <Card
       className={cn(
         "p-6 flex flex-col gap-3",
-        variant === "dark" ? "bg-[#201f24] text-white" : "bg-white text-[#201f24]"
+        variant === "dark" ? "bg-grey-900 text-white" : "bg-white text-grey-900"
       )}
     >
-      <p className="text-sm text-[#696868]">{title}</p>
+      <p className={cn(
+        "text-sm",
+        variant === "dark" ? "text-white/70" : "text-grey-500"
+      )}>{title}</p>
       <p className="text-[32px] font-bold leading-[1.2]">
         ${amount.toFixed(2)}
       </p>

@@ -68,3 +68,23 @@ export const budgetThemeOptions: { value: BudgetTheme; label: string }[] = [
   { value: "gold", label: "Gold" },
   { value: "orange", label: "Orange" },
 ]
+
+// Helper function to get CSS variable for a budget theme
+export function getBudgetThemeColor(theme: BudgetTheme): string {
+  return budgetThemeColors[theme]
+}
+
+// Helper function to get Tailwind class for budget theme background
+export function getBudgetThemeBgClass(theme: BudgetTheme): string {
+  return `bg-budget-${theme}`
+}
+
+// Helper function to get Tailwind class for budget theme text
+export function getBudgetThemeTextClass(theme: BudgetTheme): string {
+  return `text-budget-${theme}`
+}
+
+// Helper function to get Tailwind class for budget theme border
+export function getBudgetThemeBorderClass(theme: BudgetTheme): string {
+  return `border-budget-${theme}`
+}

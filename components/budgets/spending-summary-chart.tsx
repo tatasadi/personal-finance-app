@@ -96,10 +96,10 @@ export function SpendingSummaryChart({ budgets }: SpendingSummaryChartProps) {
           ))}
         </svg>
         <div className="absolute inset-0 flex flex-col items-center justify-center">
-          <p className="text-[32px] font-bold text-[#201f24]">
+          <p className="text-[32px] font-bold text-grey-900">
             ${total.toFixed(2)}
           </p>
-          <p className="text-xs text-[#696868]">
+          <p className="text-xs text-grey-500">
             of ${budgets.reduce((acc, b) => acc + b.maximum, 0).toFixed(2)} limit
           </p>
         </div>

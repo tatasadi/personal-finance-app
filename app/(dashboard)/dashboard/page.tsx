@@ -18,7 +18,7 @@ export default function DashboardPage() {
     <div className="p-4 md:p-8">
       <div className="max-w-[1140px] space-y-8">
         {/* Page Title */}
-        <h1 className="text-[32px] font-bold text-[#201f24]">Overview</h1>
+        <h1 className="text-[32px] font-bold text-grey-900">Overview</h1>
 
         {/* Summary Cards */}
         <SummaryCards

@@ -6,10 +6,10 @@ export default function AuthLayout({
   children: React.ReactNode
 }) {
   return (
-    <div className="flex min-h-screen bg-[#F8F4F0]">
+    <div className="flex min-h-screen bg-beige-100">
       {/* Illustration Panel - Hidden on mobile, visible on desktop */}
       <div className="hidden lg:flex lg:w-[560px] lg:flex-shrink-0">
-        <div className="relative m-5 flex w-full flex-col justify-between overflow-hidden rounded-xl bg-[#201f24] p-10">
+        <div className="relative m-5 flex w-full flex-col justify-between overflow-hidden rounded-xl bg-grey-900 p-10">
           {/* Background illustration */}
           <div className="absolute inset-0 rounded-xl">
             <Image

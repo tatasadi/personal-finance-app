@@ -40,6 +40,30 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+
+  /* App-specific colors */
+  --color-beige-100: var(--beige-100);
+  --color-beige-500: var(--beige-500);
+  --color-grey-100: var(--grey-100);
+  --color-grey-300: var(--grey-300);
+  --color-grey-500: var(--grey-500);
+  --color-grey-900: var(--grey-900);
+
+  /* Budget theme colors */
+  --color-budget-green: var(--budget-green);
+  --color-budget-yellow: var(--budget-yellow);
+  --color-budget-cyan: var(--budget-cyan);
+  --color-budget-navy: var(--budget-navy);
+  --color-budget-red: var(--budget-red);
+  --color-budget-purple: var(--budget-purple);
+  --color-budget-turquoise: var(--budget-turquoise);
+  --color-budget-brown: var(--budget-brown);
+  --color-budget-magenta: var(--budget-magenta);
+  --color-budget-blue: var(--budget-blue);
+  --color-budget-navy-grey: var(--budget-navy-grey);
+  --color-budget-army-green: var(--budget-army-green);
+  --color-budget-gold: var(--budget-gold);
+  --color-budget-orange: var(--budget-orange);
 }
 
 :root {
@@ -75,6 +99,30 @@
   --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
   --sidebar-border: oklch(0.929 0.013 255.508);
   --sidebar-ring: oklch(0.704 0.04 256.788);
+
+  /* App-specific colors */
+  --beige-100: #F8F4F0;
+  --beige-500: #98908B;
+  --grey-100: #F2F2F2;
+  --grey-300: #B3B3B3;
+  --grey-500: #696868;
+  --grey-900: #201F24;
+
+  /* Budget theme colors */
+  --budget-green: #277C78;
+  --budget-yellow: #F2CDAC;
+  --budget-cyan: #82C9D7;
+  --budget-navy: #626070;
+  --budget-red: #C94736;
+  --budget-purple: #826CB0;
+  --budget-turquoise: #597C7C;
+  --budget-brown: #93674F;
+  --budget-magenta: #934F6F;
+  --budget-blue: #3F82B2;
+  --budget-navy-grey: #97A0AC;
+  --budget-army-green: #7F9161;
+  --budget-gold: #CAB361;
+  --budget-orange: #BE6C49;
 }
 
 .dark {
