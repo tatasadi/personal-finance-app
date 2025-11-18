@@ -1,9 +1,11 @@
 // Import types from the types file
 import type { BudgetWithSpending, Transaction } from "./types/budget"
 import type { Pot } from "./types/pot"
+import type { RecurringBill as RecurringBillDetailed } from "./types/recurring-bill"
 
 // Re-export Pot for backward compatibility
 export type { Pot } from "./types/pot"
+export type { RecurringBill as RecurringBillDetailed } from "./types/recurring-bill"
 
 export interface Budget {
   id: string
@@ -229,6 +231,74 @@ export const recurringBills: RecurringBill[] = [
   { type: "paid", amount: 190.00 },
   { type: "upcoming", amount: 194.98 },
   { type: "due-soon", amount: 59.98 },
+]
+
+// Detailed recurring bills for the recurring bills page
+export const recurringBillsDetailed: RecurringBillDetailed[] = [
+  {
+    id: "1",
+    name: "Spark Electric Solutions",
+    avatar: "/avatars/spark-electric.jpg",
+    amount: -100.00,
+    dueDate: 2,
+    isPaid: true,
+  },
+  {
+    id: "2",
+    name: "Serenity Spa & Wellness",
+    avatar: "/avatars/serenity-spa.jpg",
+    amount: -30.00,
+    dueDate: 3,
+    isPaid: true,
+  },
+  {
+    id: "3",
+    name: "Elevate Education",
+    avatar: "/avatars/elevate-education.jpg",
+    amount: -50.00,
+    dueDate: 4,
+    isPaid: true,
+  },
+  {
+    id: "4",
+    name: "Pixel Playground",
+    avatar: "/avatars/pixel.jpg",
+    amount: -10.00,
+    dueDate: 11,
+    isPaid: true,
+  },
+  {
+    id: "5",
+    name: "Nimbus Data Storage",
+    avatar: "/avatars/nimbus-data.jpg",
+    amount: -9.99,
+    dueDate: 21,
+    isPaid: false,
+  },
+  {
+    id: "6",
+    name: "ByteWise",
+    avatar: "/avatars/bytewise.jpg",
+    amount: -49.99,
+    dueDate: 23,
+    isPaid: false,
+  },
+  {
+    id: "7",
+    name: "EcoFuel Energy",
+    avatar: "/avatars/ecofuel.jpg",
+    amount: -35.00,
+    dueDate: 29,
+    isPaid: false,
+  },
+  {
+    id: "8",
+    name: "Aqua Flow Utilities",
+    avatar: "/avatars/aqua-flow.jpg",
+    amount: -100.00,
+    dueDate: 30,
+    isPaid: false,
+  },
 ]
 
 export const mockBudgets: BudgetWithSpending[] = [
