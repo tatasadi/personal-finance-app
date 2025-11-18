@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { Card } from "@/components/ui/card"
-import { Pot } from "@/lib/dummy-data"
+import { Pot, getPotThemeColor } from "@/lib/types/pot"
 import { Wallet } from "lucide-react"
 
 interface PotsCardProps {
@@ -40,15 +40,15 @@ export function PotsCard({ totalSaved, pots }: PotsCardProps) {
 
         {/* Pots Grid */}
         <div className="grid grid-cols-2 gap-4">
-          {pots.map((pot) => (
+          {pots.slice(0, 4).map((pot) => (
             <div key={pot.id} className="flex items-start gap-4">
               <div
                 className="w-1 h-[43px] rounded-full"
-                style={{ backgroundColor: pot.color }}
+                style={{ backgroundColor: getPotThemeColor(pot.theme) }}
               />
               <div className="flex-1">
                 <p className="text-xs text-grey-500 mb-1">{pot.name}</p>
-                <p className="text-sm font-bold text-grey-900">${pot.amount}</p>
+                <p className="text-sm font-bold text-grey-900">${pot.total.toFixed(2)}</p>
               </div>
             </div>
           ))}

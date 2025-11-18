@@ -1,12 +1,9 @@
 // Import types from the types file
 import type { BudgetWithSpending, Transaction } from "./types/budget"
+import type { Pot } from "./types/pot"
 
-export interface Pot {
-  id: string
-  name: string
-  amount: number
-  color: string
-}
+// Re-export Pot for backward compatibility
+export type { Pot } from "./types/pot"
 
 export interface Budget {
   id: string
@@ -26,13 +23,12 @@ export const summary = {
   expenses: 1700.50,
 }
 
-// Note: Colors here are hex values for data representation and inline styles.
-// These correspond to CSS variables: #277C78 = --budget-green, #626070 = --budget-navy, etc.
 export const pots: Pot[] = [
-  { id: "1", name: "Savings", amount: 159, color: "#277C78" }, // budget-green
-  { id: "2", name: "Gift", amount: 40, color: "#626070" }, // budget-navy
-  { id: "3", name: "Concert Ticket", amount: 110, color: "#82C9D7" }, // budget-cyan
-  { id: "4", name: "New Laptop", amount: 10, color: "#F2CDAC" }, // budget-yellow
+  { id: "1", name: "Savings", total: 159, target: 2000, theme: "green" },
+  { id: "2", name: "Concert Ticket", total: 110, target: 150, theme: "navy" },
+  { id: "3", name: "Gift", total: 40, target: 60, theme: "cyan" },
+  { id: "4", name: "New Laptop", total: 10, target: 1000, theme: "yellow" },
+  { id: "5", name: "Holiday", total: 531, target: 1440, theme: "purple" },
 ]
 
 export const totalSaved = 850
