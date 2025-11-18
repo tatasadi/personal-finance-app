@@ -8,8 +8,7 @@ import {
   pots,
   totalSaved,
   transactions,
-  budgets,
-  budgetLimit,
+  mockBudgets,
   recurringBills,
 } from "@/lib/dummy-data"
 
@@ -41,7 +40,7 @@ export default function DashboardPage() {
           {/* Right Column */}
           <div className="space-y-6">
             {/* Budgets */}
-            <BudgetsCard budgets={budgets} limit={budgetLimit} />
+            <BudgetsCard budgets={mockBudgets} />
 
             {/* Recurring Bills */}
             <RecurringBillsCard bills={recurringBills} />

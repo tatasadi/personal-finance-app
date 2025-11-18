@@ -7,101 +7,71 @@ interface SpendingSummaryChartProps {
 }
 
 export function SpendingSummaryChart({ budgets }: SpendingSummaryChartProps) {
-  const total = budgets.reduce((acc, budget) => acc + budget.spent, 0)
+  const totalSpent = budgets.reduce((acc, budget) => acc + budget.spent, 0)
+  const totalLimit = budgets.reduce((acc, budget) => acc + budget.maximum, 0)
 
-  // Calculate angles for each segment
-  let currentAngle = -90 // Start from top
-  const segments = budgets.map((budget) => {
-    const percentage = (budget.spent / total) * 100
-    const angle = (percentage / 100) * 360
-    const segment = {
-      budget,
-      percentage,
-      startAngle: currentAngle,
-      endAngle: currentAngle + angle,
-    }
-    currentAngle += angle
-    return segment
-  })
+  // Calculate percentages for donut chart
+  const percentages = budgets.map(budget => ({
+    ...budget,
+    percentage: (budget.spent / totalSpent) * 100
+  }))
 
-  // Function to convert polar coordinates to cartesian
-  const polarToCartesian = (
-    centerX: number,
-    centerY: number,
-    radius: number,
-    angleInDegrees: number
-  ) => {
-    const angleInRadians = ((angleInDegrees - 90) * Math.PI) / 180.0
+  // Calculate SVG donut chart segments
+  const radius = 80
+  const circumference = 2 * Math.PI * radius
+  let currentAngle = 0
+
+  const segments = percentages.map((budget) => {
+    const segmentAngle = (budget.percentage / 100) * 360
+    const startAngle = currentAngle
+    currentAngle += segmentAngle
+
     return {
-      x: centerX + radius * Math.cos(angleInRadians),
-      y: centerY + radius * Math.sin(angleInRadians),
+      ...budget,
+      startAngle,
+      endAngle: currentAngle,
+      strokeDasharray: `${(budget.percentage / 100) * circumference} ${circumference}`,
+      strokeDashoffset: -((startAngle / 360) * circumference)
     }
-  }
-
-  // Function to create arc path
-  const describeArc = (
-    x: number,
-    y: number,
-    radius: number,
-    startAngle: number,
-    endAngle: number
-  ) => {
-    const start = polarToCartesian(x, y, radius, endAngle)
-    const end = polarToCartesian(x, y, radius, startAngle)
-    const largeArcFlag = endAngle - startAngle <= 180 ? "0" : "1"
-    return [
-      "M",
-      start.x,
-      start.y,
-      "A",
-      radius,
-      radius,
-      0,
-      largeArcFlag,
-      0,
-      end.x,
-      end.y,
-    ].join(" ")
-  }
-
-  const centerX = 125
-  const centerY = 125
-  const radius = 90
-  const strokeWidth = 45
+  })
 
   return (
     <div className="flex flex-col items-center">
-      <div className="relative">
-        <svg
-          width="250"
-          height="250"
-          viewBox="0 0 250 250"
-          className="transform"
-        >
-          {segments.map((segment, index) => (
-            <path
-              key={index}
-              d={describeArc(
-                centerX,
-                centerY,
-                radius,
-                segment.startAngle,
-                segment.endAngle
-              )}
+      <div className="relative w-[240px] h-[240px]">
+        <svg className="w-full h-full -rotate-90" viewBox="0 0 200 200">
+          {/* Background circle */}
+          <circle
+            cx="100"
+            cy="100"
+            r={radius}
+            fill="none"
+            stroke="#F8F4F0"
+            strokeWidth="30"
+          />
+
+          {/* Colored segments */}
+          {segments.map((segment) => (
+            <circle
+              key={segment.id}
+              cx="100"
+              cy="100"
+              r={radius}
               fill="none"
-              stroke={budgetThemeColors[segment.budget.theme]}
-              strokeWidth={strokeWidth}
-              strokeLinecap="round"
+              stroke={budgetThemeColors[segment.theme]}
+              strokeWidth="30"
+              strokeDasharray={segment.strokeDasharray}
+              strokeDashoffset={segment.strokeDashoffset}
+              style={{ transition: 'all 0.3s ease' }}
             />
           ))}
         </svg>
+
+        {/* Center text */}
         <div className="absolute inset-0 flex flex-col items-center justify-center">
-          <p className="text-[32px] font-bold text-grey-900">
-            ${total.toFixed(2)}
+          <p className="text-[32px] font-bold text-grey-900 leading-none">
+            ${totalSpent.toFixed(2)}
           </p>
-          <p className="text-xs text-grey-500">
-            of ${budgets.reduce((acc, b) => acc + b.maximum, 0).toFixed(2)} limit
-          </p>
+          <p className="text-xs text-grey-500 mt-2">of ${totalLimit.toFixed(2)} limit</p>
         </div>
       </div>
     </div>

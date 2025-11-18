@@ -80,7 +80,7 @@ export default function BudgetsPage() {
         <div className="grid gap-6 lg:grid-cols-[350px_1fr] lg:items-start xl:grid-cols-[400px_1fr]">
           {/* Spending Summary Card */}
           <div className="rounded-xl bg-white p-5 md:p-8 lg:order-1">
-            <div className="flex flex-col items-center gap-8 md:flex-row md:items-start md:justify-between lg:flex-col">
+            <div className="flex flex-col items-center gap-8 md:flex-row md:items-center md:justify-between lg:flex-col">
               <div className="shrink-0">
                 <SpendingSummaryChart budgets={budgets} />
               </div>

@@ -2,41 +2,14 @@
 
 import Link from "next/link"
 import { Card } from "@/components/ui/card"
-import { Budget } from "@/lib/dummy-data"
+import { BudgetWithSpending, budgetThemeColors } from "@/lib/types/budget"
+import { SpendingSummaryChart } from "@/components/budgets/spending-summary-chart"
 
 interface BudgetsCardProps {
-  budgets: Budget[]
-  limit: number
+  budgets: BudgetWithSpending[]
 }
 
-export function BudgetsCard({ budgets, limit }: BudgetsCardProps) {
-  const totalSpent = budgets.reduce((sum, budget) => sum + budget.amount, 0)
-
-  // Calculate percentages for donut chart
-  const percentages = budgets.map(budget => ({
-    ...budget,
-    percentage: (budget.amount / limit) * 100
-  }))
-
-  // Calculate SVG donut chart segments
-  const radius = 80
-  const circumference = 2 * Math.PI * radius
-  let currentAngle = 0
-
-  const segments = percentages.map((budget) => {
-    const segmentAngle = (budget.percentage / 100) * 360
-    const startAngle = currentAngle
-    currentAngle += segmentAngle
-
-    return {
-      ...budget,
-      startAngle,
-      endAngle: currentAngle,
-      strokeDasharray: `${(budget.percentage / 100) * circumference} ${circumference}`,
-      strokeDashoffset: -((startAngle / 360) * circumference)
-    }
-  })
-
+export function BudgetsCard({ budgets }: BudgetsCardProps) {
   return (
     <Card className="p-8">
       <div className="flex items-center justify-between mb-8">
@@ -54,42 +27,8 @@ export function BudgetsCard({ budgets, limit }: BudgetsCardProps) {
 
       <div className="flex items-center gap-6">
         {/* Donut Chart */}
-        <div className="relative w-[240px] h-[240px]">
-          <svg className="w-full h-full -rotate-90" viewBox="0 0 200 200">
-            {/* Background circle */}
-            <circle
-              cx="100"
-              cy="100"
-              r={radius}
-              fill="none"
-              stroke="#F8F4F0"
-              strokeWidth="30"
-            />
-
-            {/* Colored segments */}
-            {segments.map((segment, index) => (
-              <circle
-                key={segment.id}
-                cx="100"
-                cy="100"
-                r={radius}
-                fill="none"
-                stroke={segment.color}
-                strokeWidth="30"
-                strokeDasharray={segment.strokeDasharray}
-                strokeDashoffset={segment.strokeDashoffset}
-                style={{ transition: 'all 0.3s ease' }}
-              />
-            ))}
-          </svg>
-
-          {/* Center text */}
-          <div className="absolute inset-0 flex flex-col items-center justify-center">
-            <p className="text-[32px] font-bold text-grey-900 leading-none">
-              ${totalSpent}
-            </p>
-            <p className="text-xs text-grey-500 mt-2">of ${limit} limit</p>
-          </div>
+        <div className="shrink-0">
+          <SpendingSummaryChart budgets={budgets} />
         </div>
 
         {/* Budget List */}
@@ -98,11 +37,11 @@ export function BudgetsCard({ budgets, limit }: BudgetsCardProps) {
             <div key={budget.id} className="flex items-start gap-4">
               <div
                 className="w-1 h-[43px] rounded-full"
-                style={{ backgroundColor: budget.color }}
+                style={{ backgroundColor: budgetThemeColors[budget.theme] }}
               />
               <div className="flex-1">
                 <p className="text-xs text-grey-500 mb-1">{budget.category}</p>
-                <p className="text-sm font-bold text-grey-900">${budget.amount.toFixed(2)}</p>
+                <p className="text-sm font-bold text-grey-900">${budget.spent.toFixed(2)}</p>
               </div>
             </div>
           ))}
