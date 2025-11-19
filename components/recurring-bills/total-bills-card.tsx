@@ -6,8 +6,8 @@ interface TotalBillsCardProps {
 
 export function TotalBillsCard({ total }: TotalBillsCardProps) {
   return (
-    <div className="bg-grey-900 text-white rounded-xl p-6 lg:p-8">
-      <div className="flex items-center gap-4">
+    <div className="bg-grey-900 text-white rounded-xl p-6 lg:p-8 md:h-full">
+      <div className="flex items-center gap-4 md:flex-col md:items-start">
         <div className="p-3 bg-white/10 rounded-lg">
           <Receipt className="w-6 h-6 lg:w-8 lg:h-8" />
         </div>

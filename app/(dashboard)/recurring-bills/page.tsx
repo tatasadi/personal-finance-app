@@ -56,34 +56,28 @@ export default function RecurringBillsPage() {
   const totalBills = recurringBillsDetailed.reduce((sum, bill) => sum + bill.amount, 0)
 
   return (
-    <div className="p-5 md:p-8 lg:p-10">
-      <div className="max-w-[1440px] mx-auto space-y-6 md:space-y-8">
-        {/* Page Title */}
-        <h1 className="text-[32px] font-bold text-grey-900">Recurring Bills</h1>
+		<div className="p-5 md:p-6 lg:p-8">
+			<div className="max-w-[1440px] mx-auto space-y-6 lg:space-y-8">
+				{/* Page Title */}
+				<h1 className="text-[32px] font-bold text-grey-900">Recurring Bills</h1>
 
-        {/* Desktop Layout: Side by Side */}
-        <div className="grid grid-cols-1 lg:grid-cols-[350px,1fr] gap-6">
-          {/* Left Column: Total + Summary */}
-          <div className="space-y-6">
-            <TotalBillsCard total={totalBills} />
+				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[320px_1fr] gap-6">
+					{/* Total Bills Card */}
+					<div className="">
+						<TotalBillsCard total={totalBills} />
+					</div>
 
-            {/* Summary - Desktop only in left column, Mobile/Tablet below total */}
-            <div className="hidden lg:block">
-              <BillsSummary summary={summary} />
-            </div>
-          </div>
+					{/* Summary */}
+					<div>
+						<BillsSummary summary={summary} />
+					</div>
 
-          {/* Right Column: Bills List (Desktop) or Full Width (Mobile/Tablet) */}
-          <div>
-            <BillsList bills={recurringBillsDetailed} />
-          </div>
-        </div>
-
-        {/* Summary - Mobile/Tablet only */}
-        <div className="lg:hidden">
-          <BillsSummary summary={summary} />
-        </div>
-      </div>
-    </div>
-  )
+					{/* Bills List - spans full width on mobile, 2 cols on tablet, full remaining space on desktop */}
+					<div className="md:col-span-2 lg:col-span-1 lg:row-start-1 lg:col-start-2 lg:row-span-3">
+						<BillsList bills={recurringBillsDetailed} />
+					</div>
+				</div>
+			</div>
+		</div>
+	)
 }

@@ -91,10 +91,10 @@ export function BillsList({ bills }: BillsListProps) {
   return (
     <div className="bg-white rounded-xl border border-beige-500/15">
       {/* Search and Sort Header */}
-      <div className="p-5 lg:p-8 border-b border-beige-500/15">
-        <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
+      <div className="p-5 md:p-8 border-b border-beige-500/15">
+        <div className="flex gap-3 items-center">
           {/* Search */}
-          <div className="relative w-full sm:w-80">
+          <div className="relative flex-1">
             <Search className="absolute left-5 top-1/2 -translate-y-1/2 w-4 h-4 text-beige-500" />
             <Input
               type="text"
@@ -105,12 +105,29 @@ export function BillsList({ bills }: BillsListProps) {
             />
           </div>
 
-          {/* Sort */}
-          <div className="flex items-center gap-3 w-full sm:w-auto">
-            <span className="text-sm text-grey-500 whitespace-nowrap hidden md:block">Sort by</span>
+          {/* Sort - Desktop/Tablet */}
+          <div className="hidden md:flex items-center gap-3">
+            <span className="text-sm text-grey-500 whitespace-nowrap">Sort by</span>
             <Select value={sortBy} onValueChange={(value) => setSortBy(value as SortOption)}>
-              <SelectTrigger className="w-full sm:w-[180px] border-beige-500 h-[45px]">
+              <SelectTrigger className="w-[180px] border-beige-500 h-[45px]">
                 <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="latest">Latest</SelectItem>
+                <SelectItem value="oldest">Oldest</SelectItem>
+                <SelectItem value="a-z">A to Z</SelectItem>
+                <SelectItem value="z-a">Z to A</SelectItem>
+                <SelectItem value="highest">Highest</SelectItem>
+                <SelectItem value="lowest">Lowest</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+
+          {/* Sort Icon - Mobile Only */}
+          <div className="md:hidden">
+            <Select value={sortBy} onValueChange={(value) => setSortBy(value as SortOption)}>
+              <SelectTrigger className="w-[45px] h-[45px] border-beige-500 p-0 justify-center">
+                <SlidersHorizontal className="w-4 h-4" />
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="latest">Latest</SelectItem>
@@ -126,10 +143,10 @@ export function BillsList({ bills }: BillsListProps) {
       </div>
 
       {/* Table Header - Desktop/Tablet Only */}
-      <div className="hidden md:grid md:grid-cols-[1fr,auto,auto] gap-4 px-5 lg:px-8 py-4 border-b border-beige-500/15">
+      <div className="hidden md:grid md:grid-cols-[1fr_1fr_auto] gap-4 px-5 lg:px-8 py-4 border-b border-beige-500/15">
         <span className="text-xs text-grey-500">Bill Title</span>
-        <span className="text-xs text-grey-500 text-right w-32 lg:w-40">Due Date</span>
-        <span className="text-xs text-grey-500 text-right w-24 lg:w-32">Amount</span>
+        <span className="text-xs text-grey-500">Due Date</span>
+        <span className="text-xs text-grey-500 text-right">Amount</span>
       </div>
 
       {/* Bills List */}
@@ -147,38 +164,40 @@ export function BillsList({ bills }: BillsListProps) {
             return (
               <div
                 key={bill.id}
-                className="p-5 lg:px-8 lg:py-5 grid grid-cols-[auto,1fr,auto] md:grid-cols-[1fr,auto,auto] gap-4 items-center hover:bg-beige-100/50 transition-colors"
+                className="p-5 md:px-8 md:py-5 hover:bg-beige-100/50 transition-colors"
               >
-                {/* Avatar & Name */}
-                <div className="flex items-center gap-4 min-w-0">
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-budget-green to-budget-cyan flex-shrink-0 flex items-center justify-center text-white font-bold text-sm">
-                    {bill.name.charAt(0)}
+                <div className="grid md:grid-cols-[1fr_1fr_auto] gap-4 md:items-center">
+                  {/* Avatar & Name */}
+                  <div className="flex items-center gap-4 min-w-0 md:col-span-1 col-span-2">
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-budget-green to-budget-cyan flex-shrink-0 flex items-center justify-center text-white font-bold text-sm">
+                      {bill.name.charAt(0)}
+                    </div>
+                    <span className="font-bold text-sm text-grey-900 truncate">
+                      {bill.name}
+                    </span>
                   </div>
-                  <span className="font-bold text-sm text-grey-900 truncate">
-                    {bill.name}
+
+                  {/* Due Date */}
+                  <div className="flex items-center gap-2 col-start-1 md:col-start-2 md:pl-0 pl-14">
+                    <span className={cn(
+                      "text-xs md:text-sm",
+                      isDueSoon ? "text-budget-red font-bold" : "text-budget-green"
+                    )}>
+                      {formatDueDate(bill.dueDate)}
+                    </span>
+                    {!isPaid && (
+                      <div className={cn(
+                        "w-2 h-2 rounded-full flex-shrink-0",
+                        isDueSoon ? "bg-budget-red" : "bg-budget-green"
+                      )} />
+                    )}
+                  </div>
+
+                  {/* Amount */}
+                  <span className="text-sm font-bold text-grey-900 text-right col-start-2 row-start-2 md:row-start-1 md:col-start-3">
+                    ${Math.abs(bill.amount).toFixed(2)}
                   </span>
                 </div>
-
-                {/* Due Date */}
-                <div className="flex items-center gap-2 justify-end md:justify-start w-32 lg:w-40">
-                  <span className={cn(
-                    "text-xs md:text-sm",
-                    isDueSoon ? "text-budget-red font-bold" : "text-budget-green"
-                  )}>
-                    {formatDueDate(bill.dueDate)}
-                  </span>
-                  {!isPaid && (
-                    <div className={cn(
-                      "w-2 h-2 rounded-full flex-shrink-0",
-                      isDueSoon ? "bg-budget-red" : "bg-budget-green"
-                    )} />
-                  )}
-                </div>
-
-                {/* Amount */}
-                <span className="text-sm font-bold text-grey-900 text-right w-24 lg:w-32">
-                  ${Math.abs(bill.amount).toFixed(2)}
-                </span>
               </div>
             )
           })
